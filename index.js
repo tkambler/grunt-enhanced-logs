@@ -50,29 +50,41 @@ module.exports = (grunt) => {
                     table.push.apply(table, rows);
                     console.log(table.toString());
                 } else {
-                    options.head = options.head || [];
-                    let hasMappings = false;
-                    let maps = _.cloneDeep(options.head);
-                    options.head = options.head.map((head) => {
-                        if (is('Object', head)) {
-                            hasMappings = true;
-                            return head.label;
-                        } else {
-                            return head;
-                        }
-                    });
-                    if (hasMappings) {
-                        rows = rows.map((row) => {
-                            let res = [];
-                            maps.forEach((map) => {
-                                res.push(row[map.key] || '-');
-                            });
-                            return res;
+
+                    if (options.vertical) {
+
+                        let table = new Table({});
+                        table.push.apply(table, rows);
+                        console.log(table.toString());
+
+                    } else {
+
+                        options.head = options.head || [];
+                        let hasMappings = false;
+                        let maps = _.cloneDeep(options.head);
+                        options.head = options.head.map((head) => {
+                            if (is('Object', head)) {
+                                hasMappings = true;
+                                return head.label;
+                            } else {
+                                return head;
+                            }
                         });
+                        if (hasMappings) {
+                            rows = rows.map((row) => {
+                                let res = [];
+                                maps.forEach((map) => {
+                                    res.push(row[map.key] || '-');
+                                });
+                                return res;
+                            });
+                        }
+                        let table = new Table(options);
+                        table.push.apply(table, rows);
+                        console.log(table.toString());
+
                     }
-                    let table = new Table(options);
-                    table.push.apply(table, rows);
-                    console.log(table.toString());
+
                 }
             }
         }
