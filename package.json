@@ -1,12 +1,16 @@
 {
   "name": "grunt-enhanced-logs",
   "version": "1.1.0",
-  "description": "",
+  "description": "Enhanced logging functionality for Grunt",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "author": "",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/tkambler/grunt-enhanced-logs.git"
+  },
+  "author": "Tim Ambler <tkambler@gmail.com>",
   "license": "ISC",
   "dependencies": {
     "cli-table": "^0.3.1",
